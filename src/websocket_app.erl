@@ -20,7 +20,7 @@ start(_Type, _Args) ->
 			]}
 		]}
 	]),
-	{ok, _} = cowboy:start_http(http, 100, [{port, 8080}],
+	{ok, _} = cowboy:start_http(http, 100, [{port, 8888}],
 		[{env, [{dispatch, Dispatch}]}]),
 	websocket_sup:start_link().
 
