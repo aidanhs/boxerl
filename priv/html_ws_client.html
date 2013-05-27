@@ -44,13 +44,12 @@
           };
       };
 
-      function sendTxt() {
+      function sendWS(value) {
           if(websocket.readyState == websocket.OPEN){
-              txt = $("#send_txt").val();
-              websocket.send(txt);
-              showScreen('sending: ' + txt); 
+              websocket.send(value);
+              showScreen('sending: ' + value);
           } else {
-               showScreen('websocket is not connected'); 
+              showScreen('websocket is not connected');
           };
       };
 
@@ -95,7 +94,7 @@
       <div id="connected">				
 	<p>
 	  <input type='text' id="send_txt" value=></input>
-	  <button type="button" onclick="sendTxt();">send</button>
+	  <button type="button" onclick="sendWS($('#send_txt').val());">send</button>
 	</p>
       </div>
 
