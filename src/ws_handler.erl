@@ -14,8 +14,14 @@ websocket_init(_TransportName, Req, _Opts) ->
 	erlang:start_timer(1000, self(), <<"Hello!">>),
 	{ok, Req, undefined_state}.
 
-websocket_handle({text, Msg}, Req, State) ->
-	{reply, {text, << "That's what she said! ", Msg/binary >>}, Req, State};
+websocket_handle({text, Cmd}, Req, State) ->
+	case Cmd of
+		<<"lock">> ->
+			_ = os:cmd("rundll32.exe user32.dll, LockWorkStation"),
+			{reply, {text, <<"Computer locked">>}, Req, State};
+		Other ->
+			{reply, {text, <<"Unknown command ", Other/binary>>}, Req, State}
+	end;
 websocket_handle(_Data, Req, State) ->
 	{ok, Req, State}.
 
