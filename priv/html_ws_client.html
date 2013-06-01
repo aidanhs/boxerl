@@ -102,6 +102,11 @@
         <p>
           <button type="button" onclick="sendWS('lock');">lock</button>
         </p>
+        <p>
+          <input type='number' id="lock_after" value="0"></input>
+          <button type="button" onclick="sendWS('lock_after ' + $('#lock_after').val());">lock after N secs</button>
+          <button type="button" onclick="sendWS('lock_after inf');">stop lock timer</button>
+        </p>
       </div>
 
       <div id="content">						
