@@ -17,7 +17,7 @@ websocket_init(_TransportName, Req, _Opts) ->
 websocket_handle({text, Cmd}, Req, State) ->
 	case Cmd of
 		<<"lock">> ->
-			_ = os:cmd("rundll32.exe user32.dll, LockWorkStation"),
+			lock_computer(),
 			{reply, {text, <<"Computer locked">>}, Req, State};
 		Other ->
 			{reply, {text, <<"Unknown command ", Other/binary>>}, Req, State}
@@ -30,3 +30,8 @@ websocket_info(_Info, Req, State) ->
 
 websocket_terminate(_Reason, _Req, _State) ->
 	ok.
+
+%% UTILITY FUNCTIONS DOWN HERE %%
+
+lock_computer() ->
+	os:cmd("rundll32.exe user32.dll, LockWorkStation").
