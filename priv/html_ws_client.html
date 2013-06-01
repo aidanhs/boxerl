@@ -86,15 +86,18 @@
 
 
     <div id="navigation">
+      <p>
+        <button type="button" onclick="$('*').prop('disabled',false);">advanced</button>
+      </p>
 
       <p id="connecting">
-	<input type='text' id="server" value="ws://localhost:8080/websocket"></input>
-	<button type="button" onclick="toggle_connection()">connection</button>
+	<input type='text' id="server" disabled value="ws://localhost:8080/websocket"></input>
+	<button type="button" disabled onclick="toggle_connection()">connection</button>
       </p>
       <div id="connected">				
 	<p>
-	  <input type='text' id="send_txt" value=></input>
-	  <button type="button" onclick="sendWS($('#send_txt').val());">send</button>
+	  <input type='text' id="send_txt" disabled value=""></input>
+	  <button type="button" disabled onclick="sendWS($('#send_txt').val());">send</button>
 	</p>
         <p>
           <button type="button" onclick="sendWS('lock');">lock</button>
